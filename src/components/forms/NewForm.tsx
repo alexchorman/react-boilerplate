@@ -2,36 +2,35 @@ import React, { useCallback, useMemo, useState } from 'react'
 import styled from 'styled-components'
 import { Input } from './Input'
 import { Button } from './Button'
-import { Task } from '../../models/task'
+import { useTasks } from '../../hooks/useTasks'
+import { useHistory } from 'react-router-dom'
+import { TextArea } from './TextArea'
 
 const Container = styled.div`
   margin-bottom: 30px;
 `
 
-interface NewFormProps {
-  onNewTask(task: Task): void
-}
-
-export const NewForm = ({onNewTask}: NewFormProps) => {
+export const NewForm = () => {
+  const {addTask} = useTasks()
+  const history = useHistory();
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
 
   const isValid = useMemo(() => !!title, [title]);
   const onClick = useCallback(() => {
-    onNewTask({
+    addTask({
       title,
       description,
       created: new Date(),
       isDone: false
     })
-    setTitle('')
-    setDescription('')
+    history.push('/')
   }, [title, description])
 
   return (
     <Container>
       <Input label='Title' onChange={setTitle} value={title}/>
-      <Input label='Description' type="textarea" onChange={setDescription} value={description}/>
+      <TextArea label='Description' rows={5} onChange={setDescription} value={description}/>
       <Button onClick={onClick} disabled={!isValid}>Add</Button>
     </Container>
   )

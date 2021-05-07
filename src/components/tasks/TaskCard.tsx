@@ -1,9 +1,11 @@
 import React from 'react'
 import { Task } from '../../models/task'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 interface TaskCardProps {
   task: Task
+  id: number
 }
 
 const TaskContainer = styled.div`
@@ -17,6 +19,10 @@ const TaskContainer = styled.div`
 const TaskTitle = styled.h2`
   font-weight: bold;
   font-size: 20px;
+  a {
+    color: black !important;
+    text-decoration: none;
+  }
 `
 
 const TaskDescription = styled.p`
@@ -25,10 +31,10 @@ const TaskDescription = styled.p`
   color: #555;
 `
 
-export const TaskCard = ({task}: TaskCardProps) => {
+export const TaskCard = ({task, id}: TaskCardProps) => {
   return (
     <TaskContainer>
-      <TaskTitle>{task.title} <input type='checkbox' defaultChecked={task.isDone}/></TaskTitle>
+      <TaskTitle><Link to={`/tasks/${id}`}>{task.title}</Link> <input type='checkbox' defaultChecked={task.isDone}/></TaskTitle>
       <TaskDescription>{task.description}</TaskDescription>
     </TaskContainer>
   )

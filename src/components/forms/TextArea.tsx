@@ -1,8 +1,8 @@
-import React, { InputHTMLAttributes, useCallback } from 'react'
+import React, { TextareaHTMLAttributes, useCallback } from 'react'
 import styled from 'styled-components'
 import { Colors } from '../../constants'
 
-interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
+interface TextAreaProps extends Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 'onChange'> {
   label?: string
   onChange(newValue: string): void
 }
@@ -13,23 +13,22 @@ const Label = styled.label`
   display: inline-block;
 `
 
-const Input = ({ label, onChange, className, ...props }: InputProps) => {
+const TextArea = ({ label, onChange, className, ...props }: TextAreaProps) => {
   const wrappedOnChange = useCallback((e) => onChange(e.target.value), [])
   return (
     <div className={className}>
       {label && <Label>{label}</Label>}
-      <input type='text' {...props} onChange={wrappedOnChange}/>
+      <textarea {...props} onChange={wrappedOnChange}/>
     </div>
   )
 }
 
-export const styledInput = styled(Input)`
-  input {
-    height: 30px;
+export const styledTextArea = styled(TextArea)`
+  textarea {
     width: 250px;
     color: ${Colors.Gray}
   }
-  margin-bottom: 5px;
+  margin-bottom: 15px;
 `
 
-export {styledInput as Input}
+export {styledTextArea as TextArea}

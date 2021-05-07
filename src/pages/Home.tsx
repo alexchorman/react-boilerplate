@@ -1,18 +1,17 @@
-import React, { useState } from 'react'
-import { Page, PageContent, Title } from '../components'
+import React from 'react'
+import { Title } from '../components'
 import { TaskContainer } from '../components/tasks/TaskContainer'
-import { tasks as existingTasks } from '../data/tasks'
-import { NewForm } from '../components/forms/NewForm'
+import { Button } from '../components/forms/Button'
+import { Link } from 'react-router-dom'
 
 export function Home() {
-  const [tasks, setTasks] = useState(existingTasks)
   return (
-    <Page>
-      <PageContent>
-        <Title>TODO list</Title>
-        <NewForm onNewTask={newTask =>setTasks([newTask, ...tasks])}/>
-        <TaskContainer tasks={tasks}/>
-      </PageContent>
-    </Page>
+    <>
+      <Title>TODO list</Title>
+      <Link to='/add'>
+        <Button>Add new task</Button>
+      </Link>
+      <TaskContainer />
+    </>
   )
 }
