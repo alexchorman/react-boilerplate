@@ -11,6 +11,7 @@ const TaskContainer = styled.div`
   flex-direction: column;
   border: #999 1px solid;
   border-radius: 5px;
+  padding: 5px;
 `
 
 const TaskTitle = styled.h2`
@@ -27,7 +28,7 @@ const TaskDescription = styled.p`
 export const TaskCard = ({task}: TaskCardProps) => {
   return (
     <TaskContainer>
-      <TaskTitle>{task.title} <input type='checkbox' checked={task.isDone}/></TaskTitle>
+      <TaskTitle>{task.title} <input type='checkbox' defaultChecked={task.isDone}/></TaskTitle>
       <TaskDescription>{task.description}</TaskDescription>
     </TaskContainer>
   )
