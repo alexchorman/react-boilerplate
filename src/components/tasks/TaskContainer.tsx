@@ -8,21 +8,16 @@ interface TaskContainerProps {
   className?: string
 }
 
-function TaskContainer({ tasks, className }: TaskContainerProps ) {
+export function TaskContainer({ tasks, className }: TaskContainerProps ) {
   return (
-    <div className={className}>
+    <StyledContainer className={className}>
       {tasks.map(task => <TaskCard task={task}/>)}
-    </div>
+    </StyledContainer>
   )
 }
 
-const StyledContainer = styled(TaskContainer)`
+const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
-  
-  & > *:not(:last-child) {
-    margin-bottom: 5px;
-  }
+  margin-bottom: 5px;
 `
-
-export  {StyledContainer as TaskContainer}
