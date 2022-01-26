@@ -4,7 +4,7 @@ import { Colors } from '../../constants'
 export const PageContent = styled.div`
   position: relative;
   background-color: ${Colors.White};
-  margin: 30px auto 0 auto;
+  margin: 30px auto 0;
   max-width: 480px;
   border-radius: 12px;
   box-shadow: ${Colors.Shadow};

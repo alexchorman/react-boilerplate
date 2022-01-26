@@ -24,8 +24,6 @@ const TaskDescription = styled.p`
   color: #555;
 `
 
-
-
 export const TaskCard = ({task}: TaskCardProps) => {
   return (
     <TaskContainer>
